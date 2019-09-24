@@ -69,10 +69,11 @@ class App extends Component {
         index = i;
       }
     }
-    console.log([...this.state.person.splice(i, 1)]);
+    let array4 = [...this.state.person];
+    array4.splice(index, 1);
     this.setState({
       ...this.state,
-      person: [...this.state.person, ...this.state.person.splice(i, 1)]
+      person: array4
     });
   }
 

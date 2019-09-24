@@ -59,8 +59,21 @@ class App extends Component {
     console.log("sort by popularity");
   }
 
-  delete() {
-    console.log("delete");
+  delete(event) {
+    console.log(event.target.value);
+    let index = 0;
+
+    for (var i = 0; i < this.state.person.length; i += 1) {
+      if (this.state.person[i].name === event.target.value) {
+        console.log(i);
+        index = i;
+      }
+    }
+    console.log([...this.state.person.splice(i, 1)]);
+    this.setState({
+      ...this.state,
+      person: [...this.state.person, ...this.state.person.splice(i, 1)]
+    });
   }
 
   render() {
@@ -117,7 +130,9 @@ class App extends Component {
                     />
                     <h1>name: {actor.name}</h1>
                     <h1>popularity: {actor.popularity}</h1>
-                    <button onClick={this.delete}>delete</button>
+                    <button value={actor.name} onClick={this.delete}>
+                      delete
+                    </button>
                     <hr></hr>
                   </div>
                 </div>
